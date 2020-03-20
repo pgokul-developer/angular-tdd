@@ -1,0 +1,10 @@
+<div class="todo-container">
+    <div class="todo-wrapper">
+        <app-todo-input (createTodo)=createTodo($event)></app-todo-input>
+        <div class="todo-list">
+            <app-todo-list-item *ngFor="let item of todoService.todos$ | async" [description]="item.description"
+                [completed]="item.completed">
+            </app-todo-list-item>
+        </div>
+    </div>
+</div>

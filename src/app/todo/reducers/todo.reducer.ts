@@ -38,3 +38,5 @@ const todoReducer = createReducer(
 export function reducer(state: State | undefined, action: Action) {
   return todoReducer(state, action);
 }
+
+export const getError = (state: State) => state.error;

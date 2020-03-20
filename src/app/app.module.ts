@@ -10,6 +10,18 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 import { ROOT_REDUCERS, metaReducers } from './reducers';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+
+
+@NgModule({
+  exports: [
+    MatInputModule,
+    MatIconModule
+  ]
+})
+export class MaterialModule { }
 
 @NgModule({
   declarations: [
@@ -18,7 +30,6 @@ import { ROOT_REDUCERS, metaReducers } from './reducers';
   imports: [
     BrowserModule,
     AppRoutingModule,
-
     /**
  * StoreModule.forRoot is imported once in the root module, accepting a reducer
  * function or object map of reducer functions. If passed an object of
@@ -58,6 +69,17 @@ import { ROOT_REDUCERS, metaReducers } from './reducers';
       // In a production build you would want to disable the Store Devtools
       // logOnly: environment.production,
     }),
+
+    /**
+   * EffectsModule.forRoot() is imported once in the root module and
+   * sets up the effects class to be initialized immediately when the
+   * application starts.
+   *
+   * See: https://ngrx.io/guide/effects#registering-root-effects
+   */
+    EffectsModule.forRoot([]),
+
+    BrowserAnimationsModule,
 
   ],
   providers: [],
