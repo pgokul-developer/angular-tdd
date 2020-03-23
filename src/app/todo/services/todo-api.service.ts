@@ -31,4 +31,8 @@ export class TodoApiService {
     newTodo.completed = true;
     return of(newTodo);
   }
+
+  public deleteTodoApi(todo: Todo): Observable<Todo> {
+    return of(todo);
+  }
 }

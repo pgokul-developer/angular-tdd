@@ -50,7 +50,7 @@ describe('TodoContainerComponent', () => {
     expect(todoList).toBeTruthy();
   });
 
-  it('todoInput sbould emit createTodo event', () => {
+  it('todoInput should emit createTodo event', () => {
     // spyOn(component, 'createTodo');
     const expectedDescription: string = 'todo 1';
     let todoInputComponent: TodoInputComponent = new TodoInputComponent();

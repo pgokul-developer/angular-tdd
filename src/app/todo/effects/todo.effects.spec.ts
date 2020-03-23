@@ -19,6 +19,11 @@ export class TodoApiServiceStub {
         todo.completed = true;
         return of(todo);
     }
+
+    deleteTodoApi(): Observable<any> {
+        let todo: Todo = generateMock();
+        return of(todo);
+    }
 }
 
 
@@ -93,5 +98,20 @@ describe('TodoEffects', () => {
 
         // });
 
+    });
+
+    describe('deleteTodo effect', () => {
+
+        it('should call deleteTodoSuccess when successful', () => {
+            const todo = generateMock();
+            const action = TodoActions.deleteTodo({ todo });
+            const completion = TodoActions.deleteTodoSuccess({ todo });
+
+            actions$ = cold('-a-|', { a: action });
+            const expected = cold('-a-|', { a: completion });
+
+            expect(effects.deleteTodo$()).toBeObservable(expected);
+
+        });
     });
 });

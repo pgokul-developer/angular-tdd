@@ -48,3 +48,18 @@ export const completeTodoFailure = createAction(
   '[Todo] Complete Todo Failure',
   props<{ error: string }>()
 );
+
+export const deleteTodo = createAction(
+  '[Todo] Delete Todo',
+  props<{ todo: Todo }>()
+);
+
+export const deleteTodoSuccess = createAction(
+  '[Todo] Delete Todo Success',
+  props<{ todo: Todo }>()
+);
+
+export const deleteTodoFailure = createAction(
+  '[Todo] Delete Todo Failure',
+  props<{ error: string }>()
+);

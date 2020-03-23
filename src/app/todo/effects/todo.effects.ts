@@ -55,6 +55,19 @@ export class TodoEffects {
     );
   });
 
+  deleteTodo$ = createEffect(() => () => {
+    return this.actions$.pipe(
+
+      ofType(TodoActions.deleteTodo),
+      switchMap((payload: { todo: Todo }) => {
+        return this.todoApi.deleteTodoApi(payload.todo).pipe(
+          map((todo: Todo) => TodoActions.deleteTodoSuccess({ todo })),
+          catchError(error => of(TodoActions.deleteTodoFailure({ error })))
+        )
+      })
+    );
+  });
+
 
 
   constructor(private actions$: Actions,

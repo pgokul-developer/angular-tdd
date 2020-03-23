@@ -4,10 +4,11 @@ import { TestBed, inject, getTestBed } from '@angular/core/testing';
 
 import { TodoApiService } from './todo-api.service';
 import { HttpClient } from '@angular/common/http';
+import { hot } from 'jasmine-marbles';
 
 const mockDescription: string = 'todo 1'
 
-const mockTodo = {
+const mockTodo: Todo = {
   description: mockDescription,
   id: 1,
   completed: false
@@ -48,6 +49,12 @@ describe('TodoApiService', () => {
     service.createTodoApi(todoDescription).subscribe(res => {
       expect(res).toEqual(mockTodo);
     });
+
+
+    // const action = hot('-a-|', { a: service.createTodoApi({ description: mockDescription }) });
+
+    // const result = hot('(a|)', { a: mockTodo });
+    // expect(service.createTodoApi({ description: mockDescription })).toBeObservable(result);
 
     // const req = httpMock.expectOne('http://70023.mocklab.io/todo/create', 'call to api');
     // expect(req.request.method).toBe('POST');

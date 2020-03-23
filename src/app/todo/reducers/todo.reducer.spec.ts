@@ -106,4 +106,58 @@ describe('Todo Reducer', () => {
       expect(state.error).toBe(error);
     });
   });
+
+  describe('When the deleteTodoSuccess is dispatched', () => {
+    let state: State;
+    const mockTodo = {
+      description: 'todo 1',
+      id: 1,
+      completed: false
+    };
+    const initialState: State = {
+      todos: [
+        mockTodo
+      ],
+      error: ''
+    };
+
+    beforeEach(() => {
+      state = reducer(
+        initialState,
+        TodoActions.deleteTodoSuccess({ todo: mockTodo })
+      );
+    });
+
+    it('the todo is removed from the todos array', () => {
+      expect(state.todos.length).toEqual(0);
+    });
+  });
+
+  describe('When the deleteTodoFailure is dispatched', () => {
+    let state: State;
+    const mockTodo = {
+      description: 'todo 1',
+      id: 1,
+      completed: false
+    };
+    const initialState: State = {
+      todos: [
+        mockTodo
+      ],
+      error: ''
+    };
+    const error: string = 'Error';
+
+    beforeEach(() => {
+      state = reducer(
+        initialState,
+        TodoActions.deleteTodoFailure({ error })
+      );
+    });
+
+    it('the todo is removed from the todos array', () => {
+      expect(state.error).toEqual(error);
+    });
+  });
+
 });

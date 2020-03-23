@@ -108,3 +108,51 @@ describe('completeTodoFailure', () => {
         );
     });
 });
+
+describe('deleteTodo', () => {
+    const todo: Todo = generateMock();
+    it('should return an action', () => {
+        expect(TodoActions.deleteTodo({ todo }).type).toBe('[Todo] Delete Todo');
+    });
+
+    it('should be called with the correct payload', () => {
+        expect(TodoActions.deleteTodo({ todo })).toEqual(
+            {
+                type: '[Todo] Delete Todo',
+                todo
+            }
+        );
+    });
+});
+
+describe('deleteTodoSuccess', () => {
+    const todo: Todo = generateMock();
+    it('should return an action', () => {
+        expect(TodoActions.deleteTodoSuccess({ todo }).type).toBe('[Todo] Delete Todo Success');
+    });
+
+    it('should be called with the correct payload', () => {
+        expect(TodoActions.deleteTodoSuccess({ todo })).toEqual(
+            {
+                type: '[Todo] Delete Todo Success',
+                todo
+            }
+        );
+    });
+});
+
+describe('deleteTodoFailure', () => {
+    const error = 'Error';
+    it('should return an action', () => {
+        expect(TodoActions.deleteTodoFailure({ error }).type).toBe('[Todo] Delete Todo Failure');
+    });
+
+    it('should be called with the correct payload', () => {
+        expect(TodoActions.deleteTodoFailure({ error })).toEqual(
+            {
+                type: '[Todo] Delete Todo Failure',
+                error
+            }
+        );
+    });
+});

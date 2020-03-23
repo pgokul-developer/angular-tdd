@@ -9,11 +9,10 @@ import * as TodoActions from '../actions/todo.actions'
 
 @Injectable()
 export class TodoFacade {
-  todos$: Observable<Todo[]>;
+  todos$: Observable<Todo[]> = this.store.pipe(
+    select(fromTodoSelectors.selectTodos));;
 
   constructor(private store: Store<fromTodoReducer.State>) {
-    this.todos$ = this.store.pipe(
-      select(fromTodoSelectors.selectTodos));
   }
 
   public createTodo(description: string) {
@@ -27,6 +26,10 @@ export class TodoFacade {
   public getTodos(): Observable<Todo[]> {
     return this.store.pipe(
       select(fromTodoSelectors.selectTodos));
+  }
+
+  public deleteTodo(todo: Todo) {
+    this.store.dispatch(TodoActions.deleteTodo({ todo }))
   }
 
 }

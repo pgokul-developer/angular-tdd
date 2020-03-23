@@ -11,6 +11,7 @@ export class TodoListItemComponent implements OnInit {
 
   @Input() todo: Todo;
   @Output() complete = new EventEmitter();
+  @Output() remove = new EventEmitter();
 
   constructor() { }
 
@@ -19,6 +20,10 @@ export class TodoListItemComponent implements OnInit {
 
   public emitCompleteTodo() {
     this.complete.emit(this.todo);
+  }
+
+  public emitDeleteTodo() {
+    this.remove.emit(this.todo);
   }
 
 }

@@ -48,6 +48,16 @@ const todoReducer = createReducer(
       ...state,
       error: error
     })),
+  on(
+    TodoActions.deleteTodoSuccess, (state, { todo }) => ({
+      ...state,
+      todos: state.todos.filter(item => item.id !== todo.id)
+    })),
+  on(
+    TodoActions.deleteTodoFailure, (state, { error }) => ({
+      ...state,
+      error: error
+    })),
 );
 
 export function reducer(state: State | undefined, action: Action) {
