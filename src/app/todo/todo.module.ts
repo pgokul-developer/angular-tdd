@@ -1,5 +1,5 @@
 import { MaterialModule } from './../app.module';
-import { TodoFacade } from './services/todo.facade';
+import { TodoFacade } from './facades/todo.facade';
 import { ToDoRoutingModule } from './todo-routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';

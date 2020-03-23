@@ -15,6 +15,10 @@ export const loadTodosFailure = createAction(
   props<{ error: any }>()
 );
 
+export const resetError = createAction(
+  '[Todo] Reset Error',
+);
+
 export const createTodo = createAction(
   '[Todo] Create Todo',
   props<{ description: string }>()
@@ -28,4 +32,19 @@ export const createTodoSuccess = createAction(
 export const createTodoFailure = createAction(
   '[Todo] Create Todo Failure',
   props<{ error: any }>()
+);
+
+export const completeTodo = createAction(
+  '[Todo] Complete Todo',
+  props<{ todo: Todo }>()
+);
+
+export const completeTodoSuccess = createAction(
+  '[Todo] Complete Todo Success',
+  props<{ todo: Todo }>()
+);
+
+export const completeTodoFailure = createAction(
+  '[Todo] Complete Todo Failure',
+  props<{ error: string }>()
 );

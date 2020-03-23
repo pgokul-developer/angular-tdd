@@ -1,6 +1,7 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import * as TodoActions from '../actions/todo.actions';
 import { Todo } from '../model/todo.model';
+import { state } from '@angular/animations';
 
 export const todoFeatureKey = 'todo';
 
@@ -20,6 +21,10 @@ const todoReducer = createReducer(
   on(TodoActions.loadTodos, state => state),
   on(TodoActions.loadTodosSuccess, (state, action) => state),
   on(TodoActions.loadTodosFailure, (state, action) => state),
+  on(TodoActions.resetError, state => ({
+    ...state,
+    error: ''
+  })),
   on(
     TodoActions.createTodoSuccess, (state, { todo }) => ({
       ...state,
@@ -33,10 +38,18 @@ const todoReducer = createReducer(
       ...state,
       error: error
     })),
+  on(
+    TodoActions.completeTodoSuccess, (state, { todo }) => ({
+      ...state,
+      todos: state.todos.map(item => item.id === todo.id ? todo : item)
+    })),
+  on(
+    TodoActions.completeTodoFailure, (state, { error }) => ({
+      ...state,
+      error: error
+    })),
 );
 
 export function reducer(state: State | undefined, action: Action) {
   return todoReducer(state, action);
 }
-
-export const getError = (state: State) => state.error;

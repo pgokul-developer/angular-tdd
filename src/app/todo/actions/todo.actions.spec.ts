@@ -7,6 +7,12 @@ describe('loadTodos', () => {
     });
 });
 
+describe('resetError', () => {
+    it('should return an action', () => {
+        expect(TodoActions.resetError().type).toBe('[Todo] Reset Error');
+    });
+});
+
 describe('createTodo', () => {
     const description: string = 'Todo1';
     it('should return an action', () => {
@@ -22,7 +28,6 @@ describe('createTodo', () => {
         );
     });
 });
-
 
 describe('createTodoSuccess', () => {
     const todo: Todo = generateMock();
@@ -41,7 +46,6 @@ describe('createTodoSuccess', () => {
 });
 
 describe('createTodoFailure', () => {
-    const todo: Todo = generateMock();
     const error = 'Error';
     it('should return an action', () => {
         expect(TodoActions.createTodoFailure({ error }).type).toBe('[Todo] Create Todo Failure');
@@ -51,6 +55,54 @@ describe('createTodoFailure', () => {
         expect(TodoActions.createTodoFailure({ error })).toEqual(
             {
                 type: '[Todo] Create Todo Failure',
+                error
+            }
+        );
+    });
+});
+
+describe('completeTodo', () => {
+    const todo: Todo = generateMock();
+    it('should return an action', () => {
+        expect(TodoActions.completeTodo({ todo }).type).toBe('[Todo] Complete Todo');
+    });
+
+    it('should be called with the correct payload', () => {
+        expect(TodoActions.completeTodo({ todo })).toEqual(
+            {
+                type: '[Todo] Complete Todo',
+                todo
+            }
+        );
+    });
+});
+
+describe('completeTodoSuccess', () => {
+    const todo: Todo = generateMock();
+    it('should return an action', () => {
+        expect(TodoActions.completeTodoSuccess({ todo }).type).toBe('[Todo] Complete Todo Success');
+    });
+
+    it('should be called with the correct payload', () => {
+        expect(TodoActions.completeTodoSuccess({ todo })).toEqual(
+            {
+                type: '[Todo] Complete Todo Success',
+                todo
+            }
+        );
+    });
+});
+
+describe('completeTodoFailure', () => {
+    const error = 'Error';
+    it('should return an action', () => {
+        expect(TodoActions.completeTodoFailure({ error }).type).toBe('[Todo] Complete Todo Failure');
+    });
+
+    it('should be called with the correct payload', () => {
+        expect(TodoActions.completeTodoFailure({ error })).toEqual(
+            {
+                type: '[Todo] Complete Todo Failure',
                 error
             }
         );

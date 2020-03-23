@@ -19,8 +19,14 @@ export class TodoApiService {
     }
   }
 
-  public createToDoApi(data: TodoDescription): Observable<Todo> {
+  public createTodoApi(data: TodoDescription): Observable<Todo> {
     // return this.httpClient.post<Todo>('http://70023.mocklab.io/todo/create', data);
     return of(this.generateTodo(data));
+  }
+
+  public completeTodoApi(todo: Todo): Observable<Todo> {
+    let newTodo = Object.assign({}, todo);
+    newTodo.completed = true;
+    return of(newTodo);
   }
 }

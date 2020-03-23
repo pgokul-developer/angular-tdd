@@ -13,11 +13,15 @@ export class TodoFacade {
 
   constructor(private store: Store<fromTodoReducer.State>) {
     this.todos$ = this.store.pipe(
-      select(fromTodoSelectors.selectTodos))
+      select(fromTodoSelectors.selectTodos));
   }
 
   public createTodo(description: string) {
     this.store.dispatch(TodoActions.createTodo({ description: description }));
+  }
+
+  public completeTodo(todo: Todo) {
+    this.store.dispatch(TodoActions.completeTodo({ todo }))
   }
 
 }

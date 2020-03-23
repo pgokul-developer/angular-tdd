@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TodoFacade } from '../../services/todo.facade';
+import { TodoFacade } from '../../facades/todo.facade';
 
 @Component({
   selector: 'app-todo-container',
@@ -8,14 +8,18 @@ import { TodoFacade } from '../../services/todo.facade';
 })
 export class TodoContainerComponent implements OnInit {
 
-  constructor(public todoService: TodoFacade) { }
+  constructor(public todoFacade: TodoFacade) { }
 
   ngOnInit(): void {
   }
 
   createTodo($event) {
+    this.todoFacade.createTodo($event);
+  }
+
+  completeTodo($event) {
     console.log($event);
-    this.todoService.createTodo($event);
+    this.todoFacade.completeTodo($event);
   }
 
 }

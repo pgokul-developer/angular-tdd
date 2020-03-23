@@ -1,8 +1,34 @@
 import { generateMock, Todo } from './../model/todo.model';
-import { reducer, initialState } from './todo.reducer';
+import { reducer, initialState, State } from './todo.reducer';
 import { TodoActions } from '../actions';
 
 describe('Todo Reducer', () => {
+
+  describe('When the resetError is dispatched', () => {
+    let state: State;
+    const updateState: State = {
+      todos: [
+        {
+          description: 'todo 1',
+          id: 1,
+          completed: false
+        }
+      ],
+      error: 'Error'
+    }
+
+    beforeEach(() => {
+      state = reducer(
+        updateState,
+        TodoActions.resetError()
+      );
+    });
+
+    it('then error to be empty', () => {
+      expect(state.error).toBe('');
+    });
+  });
+
   describe('createToDoSuccess', () => {
     it('should return the previous state', () => {
       const action = {} as any;
@@ -35,6 +61,49 @@ describe('Todo Reducer', () => {
       const result = reducer(initialState, createAction);
 
       expect(result.error).toEqual('Error');
+    });
+  });
+
+  describe('When the completeTodoSuccess is dispatched', () => {
+    let state: State;
+    const updateState: State = {
+      todos: [
+        {
+          description: 'todo 1',
+          id: 1,
+          completed: true
+        }
+      ],
+      error: ''
+    }
+
+    beforeEach(() => {
+      const todo: Todo = generateMock();
+      todo.completed = true;
+      state = reducer(
+        updateState,
+        TodoActions.completeTodoSuccess({ todo })
+      );
+    });
+
+    it('then it\'s Todo is set to completed = true', () => {
+      expect(state.todos[0].completed).toBeTrue();
+    });
+  });
+
+  describe('When the completeTodoFailuer is dispatched', () => {
+    let state: State;
+    const error: string = 'Error';
+
+    beforeEach(() => {
+      state = reducer(
+        initialState,
+        TodoActions.completeTodoFailure({ error })
+      );
+    });
+
+    it('then error to be set', () => {
+      expect(state.error).toBe(error);
     });
   });
 });

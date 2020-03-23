@@ -1,5 +1,5 @@
 import { TodoApiService } from './../services/todo-api.service';
-import { generateMock, Todo, TodoDescription } from './../model/todo.model';
+import { generateMock, Todo, TodoDescription, TodoId } from './../model/todo.model';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, concatMap, switchMap } from 'rxjs/operators';
@@ -34,9 +34,22 @@ export class TodoEffects {
 
       ofType(TodoActions.createTodo),
       switchMap((desciption: TodoDescription) => {
-        return this.todoApi.createToDoApi(desciption).pipe(
+        return this.todoApi.createTodoApi(desciption).pipe(
           map((todo: Todo) => TodoActions.createTodoSuccess({ todo })),
           catchError(error => of(TodoActions.createTodoFailure({ error })))
+        )
+      })
+    );
+  });
+
+  completeTodo$ = createEffect(() => () => {
+    return this.actions$.pipe(
+
+      ofType(TodoActions.completeTodo),
+      switchMap((payload: { todo: Todo }) => {
+        return this.todoApi.completeTodoApi(payload.todo).pipe(
+          map((todo: Todo) => TodoActions.completeTodoSuccess({ todo })),
+          catchError(error => of(TodoActions.completeTodoFailure({ error })))
         )
       })
     );

@@ -45,7 +45,7 @@ describe('TodoApiService', () => {
 
   it('should return an observable with created data', () => {
     const todoDescription: TodoDescription = { description: mockDescription };
-    service.createToDoApi(todoDescription).subscribe(res => {
+    service.createTodoApi(todoDescription).subscribe(res => {
       expect(res).toEqual(mockTodo);
     });
 

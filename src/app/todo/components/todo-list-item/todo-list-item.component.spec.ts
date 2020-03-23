@@ -1,4 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { generateMock } from './../../model/todo.model';
+import { MaterialModule } from './../../../app.module';
+import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 
 import { TodoListItemComponent } from './todo-list-item.component';
 import { By } from '@angular/platform-browser';
@@ -14,6 +16,7 @@ describe('TodoListItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [MaterialModule],
       declarations: [TodoListItemComponent]
     })
       .compileComponents();
@@ -22,6 +25,7 @@ describe('TodoListItemComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TodoListItemComponent);
     component = fixture.componentInstance;
+    component.todo = generateMock();
     fixture.detectChanges();
     container = fixture.debugElement.query(By.css('.todo-list-item'));
     completed = fixture.debugElement.query(By.css('.complete'));
@@ -49,13 +53,25 @@ describe('TodoListItemComponent', () => {
     });
 
     it('should have the completed class if completed is true', () => {
-      component.completed = true;
+      component.todo.completed = true;
 
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('.completed'))).toBeTruthy();
     });
 
+    it('should emit completeTodo when clicked', fakeAsync(() => {
+      spyOn(component, 'emitCompleteTodo');
+      // component.id = 1;
+
+      completed.triggerEventHandler('click', {})
+
+      tick();
+      fixture.detectChanges();
+      expect(component.emitCompleteTodo).toHaveBeenCalled();
+      // expect(component.complete.emit).toHaveBeenCalledWith(component.id);
+      // expect(component.emitCreateTodo).toHaveBeenCalledWith(event);
+    }));
 
   });
 
@@ -65,11 +81,11 @@ describe('TodoListItemComponent', () => {
     });
 
     it('should display the description on the UI', () => {
-      component.description = 'Todo 1';
+      component.todo.description = 'Todo 1';
 
       fixture.detectChanges();
 
-      expect(description.nativeElement.textContent).toBe(component.description);
+      expect(description.nativeElement.textContent).toBe(component.todo.description);
     });
   });
 
