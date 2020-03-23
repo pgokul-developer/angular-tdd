@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './../../../app.module';
 import { element } from 'protractor';
@@ -13,8 +14,13 @@ describe('TodoInputComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [MaterialModule, BrowserAnimationsModule],
-      declarations: [TodoInputComponent]
+      imports: [MaterialModule, BrowserAnimationsModule, FormsModule],
+      declarations: [TodoInputComponent],
+      // providers: [
+      //   {
+      //     provide: 
+      //   }
+      // ]
     })
       .compileComponents();
   }));
@@ -44,19 +50,19 @@ describe('TodoInputComponent', () => {
 
     it('should call emitTodoCreate on enter pressed', fakeAsync(
       () => {
-        spyOn(component, 'emitCreateTodo');
+        spyOn(component, 'onKeyEnterCreateTodo');
 
         inputElement.value = 'hello';
-        const event = new KeyboardEvent("keypress", {
+        const event = new KeyboardEvent("keypresss", {
           "key": "Enter"
         });
 
-        input.triggerEventHandler('keyup.enter', event)
+        input.triggerEventHandler('keydown.enter', event)
 
         tick();
         fixture.detectChanges();
-        expect(component.emitCreateTodo).toHaveBeenCalled();
-        expect(component.emitCreateTodo).toHaveBeenCalledWith(event);
+        expect(component.onKeyEnterCreateTodo).toHaveBeenCalled();
+        expect(component.onKeyEnterCreateTodo).toHaveBeenCalledWith(event);
       })
     );
   });

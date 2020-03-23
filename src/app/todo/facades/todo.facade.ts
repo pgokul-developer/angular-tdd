@@ -24,4 +24,9 @@ export class TodoFacade {
     this.store.dispatch(TodoActions.completeTodo({ todo }))
   }
 
+  public getTodos(): Observable<Todo[]> {
+    return this.store.pipe(
+      select(fromTodoSelectors.selectTodos));
+  }
+
 }

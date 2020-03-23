@@ -6,6 +6,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./todo-input.component.sass']
 })
 export class TodoInputComponent implements OnInit {
+  newTodo: string = ''
 
   @Output() createTodo = new EventEmitter();
 
@@ -15,10 +16,14 @@ export class TodoInputComponent implements OnInit {
 
   }
 
-  emitCreateTodo($event) {
+  onKeyEnterCreateTodo($event) {
     console.log('$event', $event);
-    this.createTodo.emit($event.target.value);
+    this.emitCreateTodo($event.target.value);
     $event.target.value = '';
+  }
+
+  emitCreateTodo(description: string) {
+    this.createTodo.emit(description);
   }
 
 }

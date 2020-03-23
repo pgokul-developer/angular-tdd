@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class TodoApiService {
+  API: string = 'http://70023.mocklab.io'
 
   id: number = 0;
 
@@ -20,7 +21,8 @@ export class TodoApiService {
   }
 
   public createTodoApi(data: TodoDescription): Observable<Todo> {
-    // return this.httpClient.post<Todo>('http://70023.mocklab.io/todo/create', data);
+    // return this.httpClient.post<Todo>(`${this.API}/todo/create`, data);
+    // let todos: Todo =  JSON.parse(localStorage.getItem('todos')) as Todo;
     return of(this.generateTodo(data));
   }
 

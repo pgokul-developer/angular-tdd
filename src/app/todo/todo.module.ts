@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TodoContainerComponent } from './containers/todo-container/todo-container.component';
 import { TodoInputComponent } from './components/todo-input/todo-input.component';
 import { TodoListItemComponent } from './components/todo-list-item/todo-list-item.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { TodoListItemComponent } from './components/todo-list-item/todo-list-ite
     EffectsModule.forFeature([TodoEffects]),
     HttpClientModule,
     ToDoRoutingModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule
   ],
   providers: [TodoApiService, TodoFacade]
 })

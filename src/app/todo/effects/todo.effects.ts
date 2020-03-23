@@ -33,8 +33,8 @@ export class TodoEffects {
     return this.actions$.pipe(
 
       ofType(TodoActions.createTodo),
-      switchMap((desciption: TodoDescription) => {
-        return this.todoApi.createTodoApi(desciption).pipe(
+      switchMap((payload: TodoDescription) => {
+        return this.todoApi.createTodoApi({ description: payload.description }).pipe(
           map((todo: Todo) => TodoActions.createTodoSuccess({ todo })),
           catchError(error => of(TodoActions.createTodoFailure({ error })))
         )

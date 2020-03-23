@@ -1,4 +1,8 @@
 <mat-form-field>
     <mat-label>Add Todo item</mat-label>
-    <input matInput (keyup.enter)="emitCreateTodo($event)" type="text" placeholder="Add Todo item" />
+    <input matInput [(ngModel)]="newTodo" (keydown.enter)="onKeyEnterCreateTodo($event)" type="text"
+        placeholder="Add Todo item" />
 </mat-form-field>
+<button mat-raised-button color="primary" (click)="emitCreateTodo(newTodo)">Create</button>
+
+<!-- (keyup.enter)="onKeyEnterCreateTodo($event.target.value)" -->
