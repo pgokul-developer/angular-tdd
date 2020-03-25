@@ -49,6 +49,21 @@ export const completeTodoFailure = createAction(
   props<{ error: string }>()
 );
 
+export const undoCompleteTodo = createAction(
+  '[Todo] Undo Complete Todo',
+  props<{ todo: Todo }>()
+);
+
+export const undoCompleteTodoSuccess = createAction(
+  '[Todo] Undo Complete Todo Success',
+  props<{ todo: Todo }>()
+);
+
+export const undoCompleteTodoFailure = createAction(
+  '[Todo] Undo Complete Todo Failure',
+  props<{ error: string }>()
+);
+
 export const deleteTodo = createAction(
   '[Todo] Delete Todo',
   props<{ todo: Todo }>()

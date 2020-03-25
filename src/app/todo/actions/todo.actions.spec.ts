@@ -109,6 +109,59 @@ describe('completeTodoFailure', () => {
     });
 });
 
+// 
+
+describe('undoCompleteTodo', () => {
+    const todo: Todo = generateMock();
+    it('should return an action', () => {
+        expect(TodoActions.undoCompleteTodo({ todo }).type).toBe('[Todo] Undo Complete Todo');
+    });
+
+    it('should be called with the correct payload', () => {
+        expect(TodoActions.undoCompleteTodo({ todo })).toEqual(
+            {
+                type: '[Todo] Undo Complete Todo',
+                todo
+            }
+        );
+    });
+});
+
+describe('undoCompleteTodoSuccess', () => {
+    const todo: Todo = generateMock();
+    it('should return an action', () => {
+        expect(TodoActions.undoCompleteTodoSuccess({ todo }).type).toBe('[Todo] Undo Complete Todo Success');
+    });
+
+    it('should be called with the correct payload', () => {
+        expect(TodoActions.undoCompleteTodoSuccess({ todo })).toEqual(
+            {
+                type: '[Todo] Undo Complete Todo Success',
+                todo
+            }
+        );
+    });
+});
+
+describe('undoCompleteTodoFailure', () => {
+    const error = 'Error';
+    it('should return an action', () => {
+        expect(TodoActions.undoCompleteTodoFailure({ error }).type).toBe('[Todo] Undo Complete Todo Failure');
+    });
+
+    it('should be called with the correct payload', () => {
+        expect(TodoActions.undoCompleteTodoFailure({ error })).toEqual(
+            {
+                type: '[Todo] Undo Complete Todo Failure',
+                error
+            }
+        );
+    });
+});
+
+// 
+
+
 describe('deleteTodo', () => {
     const todo: Todo = generateMock();
     it('should return an action', () => {

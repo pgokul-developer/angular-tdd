@@ -65,5 +65,13 @@ describe('TodoInputComponent', () => {
         expect(component.onKeyEnterCreateTodo).toHaveBeenCalledWith(event);
       })
     );
+
+    it('should clear the input after a todo is created', () => {
+      const description = 'todo1';
+      component.newTodo = description
+      component.emitCreateTodo(description);
+      fixture.detectChanges();
+      expect(component.newTodo).toBe('');
+    });
   });
 });

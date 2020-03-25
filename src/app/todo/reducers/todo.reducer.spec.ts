@@ -71,14 +71,14 @@ describe('Todo Reducer', () => {
         {
           description: 'todo 1',
           id: 1,
-          completed: true
+          completed: false
         }
       ],
       error: ''
     }
 
     beforeEach(() => {
-      const todo: Todo = generateMock();
+      let todo: Todo = generateMock();
       todo.completed = true;
       state = reducer(
         updateState,
@@ -157,6 +157,34 @@ describe('Todo Reducer', () => {
 
     it('the todo is removed from the todos array', () => {
       expect(state.error).toEqual(error);
+    });
+  });
+
+
+  describe('When the undoCompleteTodoSuccess is dispatched', () => {
+    let state: State;
+    const updateState: State = {
+      todos: [
+        {
+          description: 'todo 1',
+          id: 1,
+          completed: true
+        }
+      ],
+      error: ''
+    }
+
+    beforeEach(() => {
+      let todo: Todo = generateMock();
+      todo.completed = false;
+      state = reducer(
+        updateState,
+        TodoActions.undoCompleteTodo({ todo })
+      );
+    });
+
+    it('then it\'s Todo is set to completed = true', () => {
+      expect(state.todos[0].completed).toBeTrue();
     });
   });
 

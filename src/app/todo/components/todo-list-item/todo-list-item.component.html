@@ -4,7 +4,7 @@
             check_circle_outline
         </span>
     </div>
-    <div class="description">{{ todo.description }}</div>
+    <div class="description" [ngClass]="{ completed: todo.completed }">{{ todo.description }}</div>
     <div class="remove" (click)="emitDeleteTodo()">
         <span class="material-icons">
             clear

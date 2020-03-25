@@ -24,6 +24,7 @@ export class TodoInputComponent implements OnInit {
 
   emitCreateTodo(description: string) {
     this.createTodo.emit(description);
+    this.newTodo = '';
   }
 
 }

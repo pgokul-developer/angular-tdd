@@ -27,6 +27,10 @@ export class TodoContainerComponent implements OnInit {
     this.todoFacade.completeTodo($event);
   }
 
+  deleteTodo($event) {
+    this.todoFacade.deleteTodo($event);
+  }
+
   getTodos() {
     this.todos$ = this.todoFacade.getTodos();
   }

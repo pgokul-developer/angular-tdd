@@ -26,11 +26,11 @@ export class TodoFacadeMock {
         ]
     )
 
-    public createTodo(description: string) {
+    public createTodo() {
         // this.store.dispatch(TodoActions.createTodo({ description: description }));
     }
 
-    public completeTodo(todo: Todo) {
+    public completeTodo() {
         // this.store.dispatch(TodoActions.completeTodo({ todo }))
     }
 
@@ -41,6 +41,11 @@ export class TodoFacadeMock {
             ]);
         // return this.store.pipe(
         //     select(fromTodoSelectors.selectTodos));
+    }
+
+    public deleteTodo() {
+        // this.store.dispatch(TodoActions.deleteTodo({ todo }))
+
     }
 }
 

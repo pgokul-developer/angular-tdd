@@ -101,15 +101,12 @@ describe('TodoListItemComponent', () => {
 
     it('should emit deleteTodo when clicked', fakeAsync(() => {
       spyOn(component, 'emitDeleteTodo');
-      // component.id = 1;
 
       remove.triggerEventHandler('click', {})
 
       tick();
       fixture.detectChanges();
       expect(component.emitDeleteTodo).toHaveBeenCalled();
-      // expect(component.complete.emit).toHaveBeenCalledWith(component.id);
-      // expect(component.emitCreateTodo).toHaveBeenCalledWith(event);
     }));
 
   });
